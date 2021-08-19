@@ -7,10 +7,14 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: git configure long path
-      run: git config --global core.longpaths true
+    - name: git configure long path and autocrlf
+      run: |
+        git config --global core.longpaths true
+        git config --global core.autocrlf input
 
     - uses: actions/checkout@v2
+    
+    - run: git config --get core.autocrlf
 
     - uses: actions/setup-java@v2
       with:
